@@ -1,3 +1,4 @@
+//Bankers Algorithm
 #include <stdio.h>
  
 int current[5][5], maximum_claim[5][5], available[5];
