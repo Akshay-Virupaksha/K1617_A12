@@ -68,7 +68,7 @@ To compile and run the program, you need:
 
 ## File Structure
 
-- **`OS_Project.c`**: The main implementation of the Banker's Algorithm.
+- **`Bankers_Algorithm.c`**: The main implementation of the Banker's Algorithm.
 
 ---
 
