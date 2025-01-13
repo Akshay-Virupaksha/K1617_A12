@@ -1,101 +1,101 @@
-# Banker's Algorithm Simulator
+# Banker's Algorithm Repository
 
-This project is an implementation of the **Banker's Algorithm** in C. The Banker's Algorithm is a resource allocation and deadlock avoidance algorithm that tests the safety of a system state by simulating resource allocation for multiple processes.
+This repository contains two different implementations of the **Banker's Algorithm**, a resource allocation and deadlock avoidance algorithm used in operating systems. These implementations simulate how a system manages resources to ensure safety and prevent deadlocks.
 
 ---
 
 ## Overview
 
-The program simulates a system with multiple processes and resources. It determines whether the system is in a **safe state** or an **unsafe state** by allocating resources dynamically and checking for potential deadlocks. 
+The Banker's Algorithm is designed to:
+1. Allocate resources to processes safely without entering an unsafe state.
+2. Dynamically calculate if the system can execute all processes without leading to a deadlock.
+3. Provide insights into resource utilization and process execution sequences.
 
-Key functionalities include:
-1. **Input**:
-   - Number of processes and resources.
-   - Maximum instances of each resource.
-   - Allocated resources for each process.
-   - Maximum required resources for each process.
-2. **Output**:
-   - Displays the system's resource allocation.
-   - Shows whether the system is in a safe or unsafe state.
-   - Provides the sequence of process execution if the system is in a safe state.
+### Key Features
+- Simulates a system with multiple processes and resources.
+- Checks if the system is in a safe or unsafe state.
+- Dynamically updates the availability of resources as processes execute.
+- Provides detailed insights into resource allocation, needs, and availability.
 
 ---
 
-## Features
+## Files in the Repository
 
-- **Resource Allocation**:
-  - Calculates total allocated resources for all processes.
-  - Determines available resources at any given time.
-  
-- **Safety Check**:
-  - Evaluates the system state after every resource allocation.
-  - Ensures that sufficient resources remain for other processes to complete safely.
+### 1. **`BankersAlgorithm_ResourceAllocation.c`**
+- **Purpose**: 
+  - Implements the Banker's Algorithm with detailed prompts for input and an interactive display of the system’s resource allocation state.
+- **Functionality**:
+  - Accepts the number of processes and resources.
+  - Inputs maximum resource claims, current allocations, and available resources.
+  - Calculates the remaining needs for each process.
+  - Simulates the execution of processes, releasing resources and updating the system state.
+  - Determines if the system is in a safe or unsafe state after all processes are either executed or blocked.
+- **Key Differentiator**:
+  - Provides a tabular output of resource allocation and updates after each step of the algorithm.
 
-- **Dynamic Execution**:
-  - Simulates the execution of processes, releasing allocated resources upon completion.
-  - Updates the availability of resources dynamically.
-
----
-
-## Prerequisites
-
-To compile and run the program, you need:
-- A C compiler (e.g., GCC).
-- Basic knowledge of C programming and operating systems.
-
----
-
-## How It Works
-
-1. **Initialization**:
-   - The program initializes data structures for:
-     - Current resource allocation.
-     - Maximum resource requirements.
-     - Available resources.
-   - Inputs the number of processes and resources.
-
-2. **Safety Algorithm**:
-   - For each process:
-     - Checks if the process's needs can be met with available resources.
-     - Executes the process if possible, releasing its allocated resources back to the system.
-   - Continues until all processes are executed or determines the system is in an unsafe state.
-
-3. **Output**:
-   - Prints the state of resources after each step.
-   - Indicates whether the system is in a safe or unsafe state.
+### 2. **`BankersAlgorithm_Interactive.c`**
+- **Purpose**:
+  - A compact implementation of the Banker's Algorithm designed for dynamic and iterative resource allocation simulation.
+- **Functionality**:
+  - Inputs the number of processes, resources, maximum claims, current allocations, and available resources.
+  - Computes the need matrix and determines whether processes can safely execute.
+  - Builds a safe sequence of process execution if the system is in a safe state.
+  - Stops execution and declares the system unsafe if any process cannot safely execute.
+- **Key Differentiator**:
+  - Focuses more on process execution order and explicitly constructs the safe sequence if the system is in a safe state.
 
 ---
 
-## File Structure
+## Concepts Covered
 
-- **`Bankers_Algorithm.c`**: The main implementation of the Banker's Algorithm.
+1. **Resource Allocation**:
+   - Allocates and tracks resources among processes dynamically.
+   - Prevents over-allocation to ensure that the system does not enter an unsafe state.
 
----
+2. **Safe and Unsafe States**:
+   - Defines a **safe state** as one where all processes can complete without deadlocks.
+   - Identifies an **unsafe state** when the system cannot guarantee that all processes can complete safely.
 
-## **Follow Prompts**:
-   - Enter the number of processes and resources.
-   - Provide the maximum instances of each resource.
-   - Input the allocated resource table and maximum resource requirement table.
+3. **Deadlock Avoidance**:
+   - Prevents the system from allocating resources in a way that could lead to a deadlock.
+   - Ensures that enough resources are always available for the remaining processes.
 
----
-
-## Limitations
-
-- The program assumes valid input from the user.
-- Works with up to 5 processes and 5 resources by default. Modify the array sizes for larger systems.
-- Does not account for processes with dynamic resource requirements during runtime.
+4. **Dynamic Execution**:
+   - Updates available resources and allocations dynamically as processes execute.
+   - Reflects real-time resource management in an operating system.
 
 ---
 
 ## Applications
 
 The Banker's Algorithm is widely used in:
-- Operating systems for resource allocation and deadlock avoidance.
-- Multi-threaded applications where resources are limited.
-- Real-time systems requiring deterministic execution.
+- **Operating Systems**:
+  - As a theoretical basis for managing multi-process environments and resource sharing.
+- **Resource Management**:
+  - Ensures that systems with limited resources allocate them safely and efficiently.
+- **Multi-threaded Programming**:
+  - Helps prevent deadlocks in concurrent applications.
+- **Educational Tools**:
+  - Serves as a foundational concept in operating systems courses.
 
 ---
 
-## Disclaimer
+## Limitations
 
-This implementation is for educational purposes and is not optimized for production systems.
+- The implementations assume valid input from the user (e.g., positive integers, no mismatched dimensions).
+- Designed for static inputs; real-world systems may have dynamically changing resource requirements.
+- Supports up to 10 processes and resources by default (modifiable in the code).
+
+---
+
+## Future Enhancements
+
+- Add support for dynamic process addition and resource changes during execution.
+- Extend functionality to simulate real-world scheduling scenarios.
+- Create a graphical or web-based interface for better visualization of the algorithm.
+
+---
+
+## License
+
+This repository is licensed under the **MIT License**. You are free to use, modify, and distribute the code with proper attribution.
